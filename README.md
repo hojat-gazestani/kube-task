@@ -1,6 +1,12 @@
 # kube-task
 
 ```shell
+git clone https://github.com/hojat-gazestani/kube-task.git
+cd kube-task/
+./main.sh 
+```
+
+```shell
 if os-release is not equal to Ubuntu 20.04:
 	answer = "Hojat tested me on Ubuntu 20.04, But this is os-release. Whould you continue(y|n)?"
 	if answer is not equal to y or Y or yes or Yes:
