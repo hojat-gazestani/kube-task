@@ -11,8 +11,8 @@ KUBESPARY() {
   read -p "Are you sure you want to setup kubespray Cluster? (y/n): " ANS
 
   if [[ $ANS =~ ^[Yy]$ ]]; then
-    setupKubespray
-    #configureKubespray
+    #setupKubespray
+    configureKubespray
     #runKubespray
   else
     echo "Skipping Kubespray setup."
