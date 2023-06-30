@@ -2,7 +2,7 @@
 
 installLPP() {
   echo "Installing Local Path Provisioner..."
-  kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.10/config/manifests/metallb-native.yaml
+  kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.24/deploy/local-path-storage.yaml
 
   if [ $? -eq 0 ]; then
     echo "Successfully installed Local Path Provisioner."

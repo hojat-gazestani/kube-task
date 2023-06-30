@@ -10,7 +10,7 @@ source ./script/08_MetaLLB.sh
 source ./script/09-InstallHelm.sh
 
 ## Run me as root
-CHECK_USR
+#CHECK_USR
 ## Check if OS release is Ubuntu 20.04
 #CHECK_OS
 ## configuring kubernetes cluster pre requirements
@@ -20,10 +20,10 @@ CHECK_USR
 #KUBESPARY
 
 ## Installing Local Path Provisioner
-#installLPP
+installLPP
+
 ## Setting MetaLLB IP range
 #setMetallbIPRange
-
 ##  Installation of Local Path Provisioner
 #setUpMetaLLB
 
