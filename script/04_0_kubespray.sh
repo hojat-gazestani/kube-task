@@ -19,5 +19,6 @@ KUBESPARY() {
   else
     echo "Skipping Kubespray setup."
   fi
+  cd ..
 }
 
