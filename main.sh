@@ -13,5 +13,5 @@ source ./script/08_MetaLLB.sh
 #PREREQ
 #KUBESPARY
 installLPP
-setMetallbIPRange
-setUpMetaLLB
+#setMetallbIPRange
+#setUpMetaLLB
