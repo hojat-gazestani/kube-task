@@ -5,7 +5,7 @@
 ```shell
 git clone https://github.com/hojat-gazestani/kube-task.git
 cd kube-task/
-./main.sh 
+sudo ./main.sh 
 ```
 
 
