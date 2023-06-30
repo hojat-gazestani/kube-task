@@ -55,10 +55,9 @@ read -p "Please enter your Kubernetes management IP: " NODE
 # Setup a Kubernete cluster
 echo "Setup a Kubernete cluster on on $NODE using Kubespray..."
 echo -p "are you sure you want to inter the kubespray directory?" ANS
+
+git clone https://github.com/kubernetes-sigs/kubespray.git
 cd kubespray
-echo "Im in";
-pwd
-ls
 
 git checkout release-2.16
 
