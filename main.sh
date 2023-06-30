@@ -5,7 +5,7 @@ source ./script/02_check_os.sh
 source ./script/03_prereq.sh
 source ./script/04_0_kubespray.sh
 
-#CHECK_USR
-#CHECK_OS
-#PREREQ
+CHECK_USR
+CHECK_OS
+PREREQ
 KUBESPARY
