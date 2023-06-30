@@ -18,7 +18,7 @@ cd kubespray
 git checkout release-2.16
 
 # Create Python virtual environment
-sudo apt install python3.8-venv
+sudo apt install python3.8-venv python3-pip -y
 python3 -m venv venv
 source venv/bin/activate
 
