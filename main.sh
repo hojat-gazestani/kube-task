@@ -22,7 +22,7 @@ source ./script/09-InstallHelm.sh
 #KUBESPARY
 
 ## Installing Local Path Provisioner
-installLPP
+#installLPP
 
 ## Setting MetaLLB IP range
 #setMetallbIPRange
