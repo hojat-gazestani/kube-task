@@ -7,10 +7,7 @@ setupKubespray() {
     echo "Error: Failed to clone Kubespray repository." >&2
     exit 1
   }
-  cd kubespray || {
-    echo "Error: Failed to change directory to kubespray." >&2
-    exit 1
-  }
+
   git checkout release-2.16 || {
     echo "Error: Failed to switch to release-2.16 branch." >&2
     exit 1
