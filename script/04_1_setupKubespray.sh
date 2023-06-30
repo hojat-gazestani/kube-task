@@ -26,6 +26,5 @@ setupKubespray() {
   pip install -r requirements.txt
 
   # Copy inventory folder
-  declare -r CLUSTER_FOLDER='my-cluster'
   cp -rfp inventory/local inventory/$CLUSTER_FOLDER
 }

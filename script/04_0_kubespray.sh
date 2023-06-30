@@ -10,6 +10,7 @@ KUBESPARY() {
   echo "Setup a Kubernetes cluster on $NODE using Kubespray..."
   read -p "Are you sure you want to setup kubespray Cluster? (y/n): " ANS
 
+  declare -r CLUSTER_FOLDER='my-cluster'
   if [[ $ANS =~ ^[Yy]$ ]]; then
     #setupKubespray
     configureKubespray
