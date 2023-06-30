@@ -67,8 +67,9 @@ python3 -m venv venv
 source venv/bin/activate
 
 # Install Python dependencies
-pip install -r requirements.txt
 pip install --upgrade setuptools
+pip install -r requirements.txt
+
 
 # Copy inventory folder
 declare -r CLUSTER_FOLDER='my-cluster'
