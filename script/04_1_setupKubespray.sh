@@ -16,6 +16,8 @@ setupKubespray() {
     exit 1
   }
 
+  sudo apt-get update -y
+  sudo apt-get update --fix-missing
   sudo apt install python3.8-venv python3-pip -y
   # Create Python virtual environment
   python3 -m venv venv
