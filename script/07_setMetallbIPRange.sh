@@ -18,4 +18,4 @@ setMetallbIPRange() {
   fi
 }
 
-sed "s/RANGE/$META_IP/g" /home/$USER/kube-task/metallb/ipPool.yaml
+#sed "s/RANGE/$META_IP/g" /home/$USER/kube-task/metallb/ipPool.yaml
