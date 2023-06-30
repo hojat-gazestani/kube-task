@@ -22,6 +22,7 @@ TEST_OS() {
     fi
 }
 
+
 PREREQ() {
 sudo sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
 sudo swapoff -a
@@ -48,8 +49,75 @@ EOF
 sudo sysctl --system
 }
 
+KUBESPARY() {
+read -p "Please enter your Kubernetes management IP: " NODE
 
-CHECK_USR
-TEST_OS
-PREREQ
+# Setup a Kubernete cluster
+echo "Setup a Kubernete cluster on on $NODE using Kubespray..."
+cd kubespray
+git checkout release-2.16
 
+# Create Python virtual environment
+sudo apt install python3.8-venv
+python3 -m venv venv
+source venv/bin/activate
+
+# Install Python dependencies
+pip install --upgrade setuptools
+pip install -r requirements.txt
+
+# Copy inventory folder
+declare -r CLUSTER_FOLDER='my-cluster'
+cp -rfp inventory/local inventory/$CLUSTER_FOLDER
+
+# Generate inventory
+declare -a IPS=($NODE)
+CONFIG_FILE=inventory/$CLUSTER_FOLDER/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+exit()
+# Configure kubespray settings
+sed -i /kube_proxy_strict_arp: false/kube_proxy_strict_arp: true/ inventory/$CLUSTER_FOLDER/group_vars/k8s_cluster/k8s-cluster.yml
+sed -i /container_manager: docker/container_manager: containerd/ inventory/$CLUSTER_FOLDER/group_vars/k8s_cluster/k8s-cluster.yml
+
+
+cat >> inventory/$CLUSTER_FOLDER/group_vars/k8s_cluster/addons.yml << EOF
+metallb_enabled: true
+metallb_speaker_enabled: true
+metallb_ip_range:
+  - "10.0.0.10-10.0.0.10"
+metallb_controller_tolerations:
+  - key: "node-role.kubernetes.io/master"
+    operator: "Equal"
+    value: ""
+    effect: "NoSchedule"
+  - key: "node-role.kubernetes.io/control-plane"
+    operator: "Equal"
+    value: ""
+    effect: "NoSchedule"
+EOF
+
+cat >> inventory/$CLUSTER_FOLDER/group_vars/etcd.yml << EOF
+etcd_deployment_type: host
+EOF
+
+cat >> inventory/$CLUSTER_FOLDER/group_vars/all/containerd.yml << EOF
+containerd_registries:
+  "docker.io":
+    - "https://mirror.gcr.io"
+    - "https://registry-1.docker.io"
+EOF
+
+# Run kubespray playbook
+USERNAME=$(whoami)
+ansible-playbook -i inventory/$CLUSTER_FOLDER/hosts.ini --connection=local -b -v cluster.yml
+
+# Set up kubeconfig
+sudo cp -r /root/.kube $HOME
+sudo chown -R $USER $HOME/.kube
+
+
+}
+
+#CHECK_USR
+#TEST_OS
+#PREREQ
+KUBESPARY
