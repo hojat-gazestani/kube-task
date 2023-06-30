@@ -7,7 +7,8 @@ source ./script/04_0_kubespray.sh
 source ./script/05_InstallLPP.sh
 source ./script/07_setMetallbIPRange.sh
 source ./script/08_MetaLLB.sh
-source ./script/09-InstallHelm.sh
+source ./script/09_InstallHelm.sh
+source ./script/10_Treafik.sh
 
 ## Run me as root
 #CHECK_USR
@@ -20,11 +21,11 @@ source ./script/09-InstallHelm.sh
 #KUBESPARY
 
 ## Installing Local Path Provisioner
-installLPP
+#installLPP
 
 ## Setting MetaLLB IP range
 #setMetallbIPRange
-##  Installation of Local Path Provisioner
+## Installation of Local Path Provisioner
 #setUpMetaLLB
 
 
@@ -32,3 +33,6 @@ installLPP
 #installHelm
 # Check Helm version
 #helmVersion
+
+## Installing Traefik
+installTraefik
