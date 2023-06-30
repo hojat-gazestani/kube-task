@@ -2,6 +2,12 @@
 
 #figlet Hojat task demon
 #neofetch
+CHECK_USR() {
+  if [ "$EUID" -ne 0 ]; then
+    echo "Please run this script as root"
+    exit 1
+  fi
+}
 
 function TEST_OS {
     # Check if OS release is Ubuntu 20.04
@@ -35,6 +41,8 @@ EOF
 sudo sysctl --system
 }
 
+
+CHECK_USR
 TEST_OS
 PREREQ
 
