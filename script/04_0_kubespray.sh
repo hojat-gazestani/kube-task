@@ -14,7 +14,7 @@ KUBESPARY() {
   cd kubespray
   if [[ $ANS =~ ^[Yy]$ ]]; then
     setupKubespray
-    #configureKubespray
+    configureKubespray
     runKubespray
   else
     echo "Skipping Kubespray setup."
