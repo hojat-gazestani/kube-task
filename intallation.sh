@@ -56,11 +56,14 @@ read -p "Please enter your Kubernetes management IP: " NODE
 echo "Setup a Kubernete cluster on on $NODE using Kubespray..."
 echo -p "are you sure you want to inter the kubespray directory?" ANS
 cd kubespray
-echo "Im in"; pwd; ls
+echo "Im in";
+pwd
+ls
+
 git checkout release-2.16
 
 # Create Python virtual environment
-sudo apt install python3.8-venv  python3-pip -y
+#sudo apt install python3.8-venv  python3-pip -y
 python3 -m venv venv
 source venv/bin/activate
 
