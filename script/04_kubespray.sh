@@ -94,4 +94,3 @@ KUBESPARY() {
   fi
 }
 
-KUBESPARY
