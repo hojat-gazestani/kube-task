@@ -9,6 +9,7 @@ source ./script/07_setMetallbIPRange.sh
 source ./script/08_MetaLLB.sh
 source ./script/09_InstallHelm.sh
 source ./script/10_Treafik.sh
+source ./script/11_installMySQL.sh
 
 ## Run me as root
 #CHECK_USR
@@ -35,4 +36,7 @@ source ./script/10_Treafik.sh
 #helmVersion
 
 ## Installing Traefik
-installTraefik
+#installTraefik
+
+## Install MySQL
+installMySQL
