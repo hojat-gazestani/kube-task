@@ -1,5 +1,7 @@
 #!/bin/bash
 
+NODE=192.168.56.6
+
 # Check if OS release is Ubuntu 20.04
 if [[ $(lsb_release -rs) != "20.04" ]]; then
     read -p "Hojat tested me on Ubuntu 20.04, but this is os-release. Would you like to continue? (y/n): " answer
@@ -8,7 +10,7 @@ if [[ $(lsb_release -rs) != "20.04" ]]; then
     fi
 fi
 
-NODE=192.168.56.6
+
 
 # Setup a Kubernete cluster
 echo "Setup a Kubernete cluster on on $NODE using Kubespray..."
@@ -21,8 +23,9 @@ python3 -m venv venv
 source venv/bin/activate
 
 # Install Python dependencies
-pip install --upgrade setuptools
-pip install -r requirements.txt
+sudo apt install python3-pip
+pip3 install -r requirements.txt
+pip3 install --upgrade setuptools
 
 # Copy inventory folder
 declare -r CLUSTER_FOLDER='my-cluster'
@@ -33,15 +36,14 @@ declare -a IPS=(192.168.56.6)
 CONFIG_FILE=inventory/$CLUSTER_FOLDER/hosts.yaml python3 contrib/inventory_builder/inventory.py "$NODE"
 
 # Configure kubespray settings
-sed -i /kube_proxy_strict_arp: false/kube_proxy_strict_arp: true/ inventory/$CLUSTER_FOLDER/group_vars/k8s_cluster/k8s-cluster.yml 
-sed -i /container_manager: docker/container_manager: containerd/ inventory/$CLUSTER_FOLDER/group_vars/k8s_cluster/k8s-cluster.yml 
+sed -i 's/kube_proxy_strict_arp: false/kube_proxy_strict_arp: true/' inventory/$CLUSTER_FOLDER/group_vars/k8s_cluster/k8s-cluster.yml
+sed -i 's/container_manager: docker/container_manager: containerd/' inventory/$CLUSTER_FOLDER/group_vars/k8s_cluster/k8s-cluster.yml
  
+sed -i 's/metallb_enabled: false/metallb_enabled: true/'  inventory/$CLUSTER_FOLDER/group_vars/k8s_cluster/addons.yml
 
 cat >> inventory/$CLUSTER_FOLDER/group_vars/k8s_cluster/addons.yml << EOF
-metallb_enabled: true
-metallb_speaker_enabled: true
 metallb_ip_range:
-  - "10.0.0.10-10.0.0.10"  
+  - "10.5.0.50-10.5.0.50"
 metallb_controller_tolerations:  
   - key: "node-role.kubernetes.io/master"  
     operator: "Equal"  
@@ -53,9 +55,7 @@ metallb_controller_tolerations:
     effect: "NoSchedule"  
 EOF
 
-cat >> inventory/$CLUSTER_FOLDER/group_vars/etcd.yml << EOF
-etcd_deployment_type: host
-EOF
+sed -i 's|etcd_deployment_type: docker|etcd_deployment_type: host|' inventory/$CLUSTER_FOLDER/group_vars/etcd.yml
 
 cat >> inventory/$CLUSTER_FOLDER/group_vars/all/containerd.yml << EOF
 containerd_registries:
@@ -83,8 +83,15 @@ echo "Installing Helm 3.12.1"
 wget https://get.helm.sh/helm-v3.12.1-linux-amd64.tar.gz
 tar xvf helm-v3.12.1-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin
-helm version
-echo "Helm installation completed!"
+
+OUTPUT=$(helm version)
+
+if [[ ! $OUTPUT =~ ^version ]]; then
+    echo "Helm installation was not successful!"
+    exit
+else
+    echo "Helm installation completed!"
+fi
 
 # Install Traefik
 echo "Installing Traefik..."
@@ -96,7 +103,7 @@ sed -i '568s/expose: false/expose: true/' traefik-values.yaml
 
 helm install traefik traefik/traefik --values traefik-values.yaml -n traefik --create-namespace
 echo "Traefik installation completed"
-echo "Traefik dashboard will be accessible through the $(MetalLB-externalIP):9000"
+echo "Traefik dashboard will be accessible through the `kubectl get svc -n traefik | awk '{print $4}' | tail -n 1`:9000"
 
 # Install MySQL
 echo "Installing MySQL..."
