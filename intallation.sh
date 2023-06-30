@@ -4,7 +4,7 @@
 #neofetch
 CHECK_USR() {
   if [ "$EUID" -ne 0 ]; then
-    echo "Please run this script as root"
+    echo "Please run me as root"
     exit 1
   fi
 }
@@ -22,6 +22,12 @@ function TEST_OS {
 }
 
 function PREREQ {
+sudo sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
+sudo swapoff -a
+
+sudo systemctl stop apparmor
+sudo systemctl disable apparmor
+
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
