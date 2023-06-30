@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source ./04_1_setupKubespray.sh
-source ./04_2_configureKubespray.sh
-source ./04_3_runKubespray.sh
+source ./script/04_1_setupKubespray.sh
+source ./script/04_2_configureKubespray.sh
+source ./script/04_3_runKubespray.sh
 
 KUBESPARY() {
   read -p "Please enter your Kubernetes management IP: " NODE
