@@ -5,7 +5,7 @@ DEFAULT_COLOR='\033[0m'
 
 
 installHelm() {
-  echo "Installing Helm..."
+  echo -e "${GREEN_BACKGROUND}${BLACK_FONT}Installing Helm...${DEFAULT_COLOR}"
 
   # Download Helm package
   wget https://get.helm.sh/helm-v3.12.1-linux-amd64.tar.gz || {
