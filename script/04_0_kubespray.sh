@@ -8,7 +8,7 @@ KUBESPARY() {
   read -p "Please enter your Kubernetes management IP: " NODE
 
   echo "Setup a Kubernetes cluster on $NODE using Kubespray..."
-  read -p "Are you sure you want to enter the kubespray directory? (y/n): " ANS
+  read -p "Are you sure you want to setup kubespray Cluster? (y/n): " ANS
 
   if [[ $ANS =~ ^[Yy]$ ]]; then
     setupKubespray

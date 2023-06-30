@@ -22,7 +22,7 @@ setupKubespray() {
   source venv/bin/activate
 
   # Install Python dependencies
-  pip install --upgrade setuptools
+  pip install --upgrade pip
   pip install -r requirements.txt
 
   # Copy inventory folder
