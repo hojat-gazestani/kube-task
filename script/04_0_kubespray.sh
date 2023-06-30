@@ -13,7 +13,7 @@ KUBESPARY() {
   declare -r CLUSTER_FOLDER='my-cluster'
   cd kubespray
   if [[ $ANS =~ ^[Yy]$ ]]; then
-    #setupKubespray
+    setupKubespray
     #configureKubespray
     runKubespray
   else
