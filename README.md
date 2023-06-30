@@ -1,74 +1,13 @@
 # kube-task
 
+![demo](https://github.com/hojat-gazestani/kube-task/blob/main/pic/demo.png)
+
 ```shell
 git clone https://github.com/hojat-gazestani/kube-task.git
 cd kube-task/
 ./main.sh 
 ```
 
-```shell
-if os-release is not equal to Ubuntu 20.04:
-	answer = "Hojat tested me on Ubuntu 20.04, But this is os-release. Whould you continue(y|n)?"
-	if answer is not equal to y or Y or yes or Yes:
-		exit()
-```
-
-## [kubespray](https://github.com/kubernetes-sigs/kubespray.git)
-
-```bash
-git clone https://github.com/kubernetes-sigs/kubespray.git
-cd kubespray
-git checkout release-2.16
-
-python3 -m venv venv
-sudo apt install python3.8-venv
-python3 -m venv venv
-source venv/bin/activate
-
-pip install --upgrade setuptools
-pip install -r requirements.txt
-
-declare -r CLUSTER_FOLDER='my-cluster'
-cp -rfp inventory/local inventory/$CLUSTER_FOLDER
-
-declare -a IPS=(192.168.56.6)
-CONFIG_FILE=inventory/$CLUSTER_FOLDER/hosts.yaml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
-
-vim inventory/$CLUSTER_FOLDER/group_vars/k8s_cluster/k8s-cluster.yml
-kube_proxy_strict_arp: true
-container_manager: containerd
-
-vim inventory/$CLUSTER_FOLDER/group_vars/k8s_cluster/addons.yml
-metallb_enabled: true  # Set this `true`
-metallb_speaker_enabled: true  # This should be already set to `true`
-metallb_ip_range:
-  - "10.0.0.10-10.0.0.10"  
-metallb_controller_tolerations:  
-  - key: "node-role.kubernetes.io/master"  
-    operator: "Equal"  
-    value: ""  
-    effect: "NoSchedule"  
-  - key: "node-role.kubernetes.io/control-plane"  
-    operator: "Equal"  
-    value: ""  
-    effect: "NoSchedule"  
-
-vim inventory/$CLUSTER_FOLDER/group_vars/group_vars/etcd.yml
-etcd_deployment_type: host
-
-vim inventory/CLUSER_FOLDER/group_vars/all/containerd.yml
-containerd_registries:
-  "docker.io":
-    - "https://mirror.gcr.io"
-    - "https://registry-1.docker.io"
-
-USERNAME=$(whoami)
-ansible-playbook -i inventory/$CLUSTER_FOLDER/hosts.ini --connection=local -b -v cluster.yml
-
-$ sudo cp -r /root/.kube $HOME
-$ sudo chown -R $USER $HOME/.kube
-
-```
 
 ## [Local Path Provisioner](https://github.com/rancher/local-path-provisioner)
 
