@@ -29,7 +29,3 @@ installWordPress() {
     exit 1
   fi
 }
-
-# Call the functions
-configureHelm
-installWordPress
