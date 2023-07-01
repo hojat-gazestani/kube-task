@@ -17,7 +17,5 @@ installPhpMyAdmin() {
     echo -e "${GREEN_BACKGROUND}${BLACK_FONT}Failed to install phpMyAdmin.${DEFAULT_COLOR}"
     exit 1
   fi
-
-
 }
 

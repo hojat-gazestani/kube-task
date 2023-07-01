@@ -13,6 +13,7 @@ source ./script/11_Config_repo.sh
 source ./script/12_installMySQL.sh
 source ./script/13_InstallingPHPmyAdmin.sh
 source ./script/14_InstallWordPress.sh
+source ./script/15_myPhpMyadmin.sh
 
 ## Run me as root
 # CHECK_USR
@@ -52,3 +53,6 @@ source ./script/14_InstallWordPress.sh
 
 ## Installing Wordpress
 installWordPress
+
+## Running my PhpMyAdmin
+MyPhpMyAdmin
