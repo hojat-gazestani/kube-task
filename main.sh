@@ -9,7 +9,10 @@ source ./script/07_setMetallbIPRange.sh
 source ./script/08_MetaLLB.sh
 source ./script/09_InstallHelm.sh
 source ./script/10_Treafik.sh
-source ./script/11_installMySQL.sh
+source ./script/11_Config_repo.sh
+source ./script/12_installMySQL.sh
+source ./script/13_InstallingPHPmyAdmin.sh
+source ./script/14_InstallWordPress.sh
 
 ## Run me as root
 #CHECK_USR
@@ -38,5 +41,14 @@ source ./script/11_installMySQL.sh
 ## Installing Traefik
 #installTraefik
 
+# Add bitnami repository
+#configureHelm
+
 ## Install MySQL
-installMySQL
+#installMySQL
+
+## Call the function to install phpMyAdmin
+installPhpMyAdmin
+
+## Installing Wordpress
+#installWordPress

@@ -6,11 +6,6 @@ BLACK_FONT='\033[30m'
 DEFAULT_COLOR='\033[0m'
 
 installMySQL() {
-  # Add Bitnami Helm repository
-  echo -e "${GREEN_BACKGROUND}${BLACK_FONT}Adding Bitnami Helm repository...${DEFAULT_COLOR}"
-  helm repo add bitnami https://charts.bitnami.com/bitnami
-  helm repo update
-
   # Retrieve MySQL values and configure
   echo -e "${GREEN_BACKGROUND}${BLACK_FONT}Retrieving MySQL values and configuring...${DEFAULT_COLOR}"
   helm show values bitnami/mysql > mysql-values.yaml
