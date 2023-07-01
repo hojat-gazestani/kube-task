@@ -9,7 +9,7 @@ installPhpMyAdmin() {
   echo -e "${GREEN_BACKGROUND}${BLACK_FONT}Installing phpMyAdmin...${DEFAULT_COLOR}"
 
   # Install phpMyAdmin using Helm
-  if helm install phpmyadmin ./phpmyadmin ; then
+  if helm install myphpmyadmin ./phpmyadmin ; then
     echo -e "${GREEN_BACKGROUND}${BLACK_FONT}phpMyAdmin installation completed successfully.${DEFAULT_COLOR}"
     TR_IP=$(kubectl get svc -n traefik | awk '{print $4}' | tail -n 1)
     echo -e "${GREEN_BACKGROUND}${BLACK_FONT}Configure $TR_IP  phpmyadmin.local in you hosts file to have access to PhpMyAdmin.${DEFAULT_COLOR}"
