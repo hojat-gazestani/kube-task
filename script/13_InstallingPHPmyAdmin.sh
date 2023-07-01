@@ -17,9 +17,13 @@ installPhpMyAdmin() {
   # Install phpMyAdmin using Helm
   if helm install phpmyadmin bitnami/phpmyadmin --values phpmyadmin-values.yaml -n phpmyadmin --create-namespace; then
     echo -e "${GREEN}phpMyAdmin installation completed successfully.${NC}"
+    TR_IP=$(kubectl get svc -n traefik | awk '{print $4}' | tail -n 1)
+    echo -e "${GREEN_BACKGROUND}${BLACK_FONT}Configure $TR_IP  phpmyadmin.local in you hosts file to have access to PhpMyAdmin.${DEFAULT_COLOR}"
   else
     echo -e "${GREEN}Failed to install phpMyAdmin.${NC}"
     exit 1
   fi
+
+
 }
 
