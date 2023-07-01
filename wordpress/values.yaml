@@ -117,13 +117,13 @@ existingSecret: ""
 wordpressEmail: user@example.com
 ## @param wordpressFirstName WordPress user first name
 ##
-wordpressFirstName: FirstName
+wordpressFirstName: Hojat
 ## @param wordpressLastName WordPress user last name
 ##
-wordpressLastName: LastName
+wordpressLastName: Gazestani
 ## @param wordpressBlogName Blog name
 ##
-wordpressBlogName: User's Blog!
+wordpressBlogName: Kubernetes task
 ## @param wordpressTablePrefix Prefix to use for WordPress database tables
 ##
 wordpressTablePrefix: wp_
