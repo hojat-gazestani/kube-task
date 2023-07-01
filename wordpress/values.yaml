@@ -1136,6 +1136,7 @@ mariadb:
 externalDatabase:
   ## @param externalDatabase.host External Database server host
   ##
+
   host: mysql.default.svc.cluster.local
   ## @param externalDatabase.port External Database server port
   ##
