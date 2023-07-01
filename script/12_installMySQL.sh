@@ -19,6 +19,8 @@ installMySQL() {
   echo -e "${GREEN_BACKGROUND}${BLACK_FONT}Installing MySQL...${DEFAULT_COLOR}"
   helm install mysql bitnami/mysql --values mysql-values.yaml
 
+  TR_IP=$(kubectl get svc -n traefik | awk '{print $4}' | tail -n 1)
   echo -e "${GREEN_BACKGROUND}${BLACK_FONT}MySQL installation completed.${DEFAULT_COLOR}"
+  echo -e "${GREEN_BACKGROUND}${BLACK_FONT}Configure $TR_IP  phpmyadmin.local in you hosts file to have access to PhpMyAdmin.${DEFAULT_COLOR}"
 }
 
