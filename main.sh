@@ -45,10 +45,10 @@ source ./script/14_InstallWordPress.sh
 # configureHelm
 
 ## Install MySQL
-installMySQL
+# installMySQL
 
 ## Call the function to install phpMyAdmin
-installPhpMyAdmin
+# installPhpMyAdmin
 
 ## Installing Wordpress
 installWordPress
