@@ -57,33 +57,33 @@ service:
 
   sessionAffinity: None
 
-ingress:
-  enabled: true
-  className: ""
-  annotations: {}
-  apiVersion: ""
-  hostname: myphp.local
-  pathType: ImplementationSpecific
-  path: /
-
-ingressRules:
-    backendOnlyAccessibleByFrontend: false
-    customBackendSelector: {}
-    accessOnlyFrom:
-      enabled: false
-      namespaceSelector: {}
-      podSelector: {}
-    customRules: {}
 #ingress:
 #  enabled: true
 #  className: ""
 #  annotations: {}
-#  hosts:
-#    - host: myphp.local
-#      paths:
-#        - path: /
-#          pathType: ImplementationSpecific
-#  tls: false
+#  apiVersion: ""
+#  hostname: myphp.local
+#  pathType: ImplementationSpecific
+#  path: /
+#
+#ingressRules:
+#    backendOnlyAccessibleByFrontend: false
+#    customBackendSelector: {}
+#    accessOnlyFrom:
+#      enabled: false
+#      namespaceSelector: {}
+#      podSelector: {}
+#    customRules: {}
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+  hosts:
+    - host: myphp.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: false
 
 
 resources: {}
