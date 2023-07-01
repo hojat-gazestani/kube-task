@@ -48,7 +48,7 @@ source ./script/14_InstallWordPress.sh
 #installMySQL
 
 ## Call the function to install phpMyAdmin
-installPhpMyAdmin
+#installPhpMyAdmin
 
 ## Installing Wordpress
-#installWordPress
+installWordPress
