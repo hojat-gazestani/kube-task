@@ -22,8 +22,10 @@ installWordPress() {
   sed -i 's|database: bitnami_wordpress|database: wp_database|' wordpress-values.yaml
 
   # Install WordPress using Helm
-  if helm install wordpress bitnami/wordpress --values wordpress-values.yaml -n wordpress --create-namespace; then
+  if helm install wordpress bitnami/wordpress --values wordpress-values.yaml; then
     echo -e "${GREEN}WordPress installation completed successfully.${NC}"
+    TR_IP=$(kubectl get svc -n traefik | awk '{print $4}' | tail -n 1)
+    echo -e "${GREEN_BACKGROUND}${BLACK_FONT}Configure $TR_IP  phpmyadmin.local in you hosts file to have access to PhpMyAdmin.${DEFAULT_COLOR}"
   else
     echo -e "${GREEN}Failed to install WordPress.${NC}"
     exit 1
