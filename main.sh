@@ -51,4 +51,4 @@ source ./script/14_InstallWordPress.sh
 #installPhpMyAdmin
 
 ## Installing Wordpress
-installWordPress
+#installWordPress
