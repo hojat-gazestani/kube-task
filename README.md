@@ -1,9 +1,9 @@
-# kube-task
+# Deprecated Repository
 
-![demo](https://github.com/hojat-gazestani/kube-task/blob/main/pic/demo.png)
+⚠️ **This repository is deprecated and is no longer maintained. Please use our new repository instead: [New Repository](https://github.com/hojat-gazestani/kubespray-cluster).**
 
-```shell
-git clone https://github.com/hojat-gazestani/kube-task.git
-cd kube-task/
-sudo ./main.sh 
-```
+This repository has been archived and will not receive any further updates. For the latest code, issues, and contributions, please visit our new repository at:
+
+**[https://github.com/hojat-gazestani/kubespray-cluster](https://github.com/hojat-gazestani/kubespray-cluster)**
+
+Thank you for understanding and following the transition to the new repository!
